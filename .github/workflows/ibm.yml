@@ -1,4 +1,4 @@
-name: IBM Cloud Auto Restart
+name: IBM CloudFoundry Reinstall V2ray
 
 on:
   push:
