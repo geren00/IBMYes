@@ -42,6 +42,6 @@ jobs:
         WS_PATH: ${{ secrets.WS_PATH }}
       run: |
         chmod 777 ./re_install.sh
-        ./re_install.sh "$IBM_APP_NAME" "$UUID" "$WS_PATH"
+        ./re_install.sh ${IBM_APP_NAME} ${UUID} ${WS_PATH}
         
 
