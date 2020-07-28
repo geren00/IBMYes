@@ -17,7 +17,6 @@ jobs:
 
     - name: Init
       run: |
-        chmod 777 ./re_install.sh
         chmod -R 777 ./IBM_Cloud_CLI/
     - name: Login IBM Cloud
       env:
@@ -42,11 +41,49 @@ jobs:
         UUID: ${{ secrets.UUID }}
         WS_PATH: ${{ secrets.WS_PATH }}
       run: |
-        sudo bash re_install.sh "$IBM_APP_NAME" "$UUID" "$WS_PATH"
-        cd ..
-        ./IBM_Cloud_CLI/ibmcloud target --cf
-        ./IBM_Cloud_CLI/ibmcloud cf install
-        ./IBM_Cloud_CLI/ibmcloud cf push
+        ls -a
+        cat >  ./v2ray-cloudfoundry/manifest.yml  << EOF
+        applications:
+        - path: .
+        name: ${IBM_APP_NAME}
+        random-route: true
+        memory: 256M
+        EOF
+        cat >  ./v2ray-cloudfoundry/v2ray/config.json  << EOF
+        {
+            "inbounds": [
+                {
+                    "port": 8080,
+                    "protocol": "vmess",
+                    "settings": {
+                        "clients": [
+                            {
+                                "id": "${UUID}",
+                                "alterId": 4
+                            }
+                        ]
+                    },
+                    "streamSettings": {
+                        "network":"ws",
+                        "wsSettings": {
+                            "path": "${WSPATH}"
+                        }
+                    }
+                }
+            ],
+            "outbounds": [
+                {
+                    "protocol": "freedom",
+                    "settings": {}
+                }
+            ]
+        }
+        EOF
+        cd ./v2ray-cloudfoundry
+        ../IBM_Cloud_CLI/ibmcloud target --cf
+        ../IBM_Cloud_CLI/ibmcloud cf install
+        ../IBM_Cloud_CLI/ibmcloud cf push
+        echo "配置完成。"
         
         
 
