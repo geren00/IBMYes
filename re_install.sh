@@ -1,13 +1,12 @@
 #!/bin/bash
 SH_PATH=$(cd "$(dirname "$0")";pwd)
 cd ${SH_PATH}
+IBM_APP_NAME=$1
+UUID=$2
+WSPATH=$3
 
-create_mainfest_file(){
-    IBM_APP_NAME=$1
-    IBM_MEM_SIZE=256
-    UUID=$2
-    WSPATH=$3
-    
+create_mainfest_file(){  
+    IBM_MEM_SIZE=256    
     cat >  ${SH_PATH}/IBMYes/v2ray-cloudfoundry/manifest.yml  << EOF
     applications:
     - path: .
@@ -86,9 +85,9 @@ clone_repo(){
 install(){
     echo "进行安装。。。"
     cd ${SH_PATH}/IBMYes/v2ray-cloudfoundry
-    ${SH_PATH}/IBMYes/IBM_Cloud_CLI/ibmcloud target --cf
-    ${SH_PATH}/IBMYes/IBM_Cloud_CLI/ibmcloud cf install
-    ${SH_PATH}/IBMYes/IBM_Cloud_CLI/ibmcloud cf push
+    ./IBM_Cloud_CLI/ibmcloud target --cf
+    ./IBM_Cloud_CLI/ibmcloud cf install
+    ./IBM_Cloud_CLI/ibmcloud cf push
     echo "安装完成。"
     echo "UUID为：${UUID}"
     echo "WebSocket为：${WSPATH}"
