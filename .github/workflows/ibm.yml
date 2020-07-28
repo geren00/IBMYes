@@ -72,7 +72,7 @@ jobs:
                     "streamSettings": {
                         "network":"ws",
                         "wsSettings": {
-                            "path": "${WSPATH}"
+                            "path": "${WS_PATH}"
                         }
                     }
                 }
