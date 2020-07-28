@@ -4,6 +4,9 @@ cd ${SH_PATH}
 IBM_APP_NAME=$1
 UUID=$2
 WSPATH=$3
+echo ${IBM_APP_NAME}
+echo ${UUID}
+echo ${WSPATH}
 
 create_mainfest_file(){  
     IBM_MEM_SIZE=256    
