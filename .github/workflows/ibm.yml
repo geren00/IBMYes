@@ -1,4 +1,4 @@
-name: IBM CloudFoundry Reinstall V2ray
+name: IBM_CF Reinstall V2ray
 
 on:
   push:
@@ -46,6 +46,8 @@ jobs:
         cd ./v2ray-cloudfoundry/v2ray
         pwd
         chmod 0755 ./*
+        cd ..
+        pwd
         cat >  ./v2ray-cloudfoundry/manifest.yml  << EOF
         applications:
         - path: .
@@ -83,7 +85,6 @@ jobs:
             ]
         }
         EOF
-        cd ..
         pwd
         echo "开始推送配置文件,远程部署!!"
         ../IBM_Cloud_CLI/ibmcloud cf push
