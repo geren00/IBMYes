@@ -86,9 +86,9 @@ clone_repo(){
 install(){
     echo "进行安装。。。"
     cd ${SH_PATH}/IBMYes/v2ray-cloudfoundry
-    ibmcloud target --cf
-    ibmcloud cf install
-    ibmcloud cf push
+    ${SH_PATH}/IBMYes/IBM_Cloud_CLI/ibmcloud target --cf
+    ${SH_PATH}/IBMYes/IBM_Cloud_CLI/ibmcloud cf install
+    ${SH_PATH}/IBMYes/IBM_Cloud_CLI/ibmcloud cf push
     echo "安装完成。"
     echo "UUID为：${UUID}"
     echo "WebSocket为：${WSPATH}"
