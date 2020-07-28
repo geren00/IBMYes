@@ -1,6 +1,7 @@
 #!/bin/bash
 SH_PATH=$(cd "$(dirname "$0")";pwd)
 cd ${SH_PATH}
+echo ${SH_PATH}
 IBM_APP_NAME=$1
 UUID=$2
 WSPATH=$3
