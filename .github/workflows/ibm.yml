@@ -43,6 +43,8 @@ jobs:
       run: |
         ls -a
         git submodule update --init --recursive
+        cd ./v2ray-cloudfoundry/v2ray
+        pwd
         chmod 0755 ./*
         cat >  ./v2ray-cloudfoundry/manifest.yml  << EOF
         applications:
@@ -81,7 +83,8 @@ jobs:
             ]
         }
         EOF
-        cd ./v2ray-cloudfoundry
+        cd ..
+        pwd
         echo "开始推送配置文件,远程部署!!"
         ../IBM_Cloud_CLI/ibmcloud cf push
         echo "配置完成。"
