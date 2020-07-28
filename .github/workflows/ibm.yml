@@ -42,6 +42,11 @@ jobs:
         UUID: ${{ secrets.UUID }}
         WS_PATH: ${{ secrets.WS_PATH }}
       run: |
-        sudo bash re_install.sh $IBM_APP_NAME $UUID $WS_PATH
+        sudo bash re_install.sh "$IBM_APP_NAME" "$UUID" "$WS_PATH"
+        cd ..
+        ./IBM_Cloud_CLI/ibmcloud target --cf
+        ./IBM_Cloud_CLI/ibmcloud cf install
+        ./IBM_Cloud_CLI/ibmcloud cf push
+        
         
 
