@@ -17,6 +17,7 @@ jobs:
 
     - name: Init
       run: |
+        chmod 777 ./re_install.sh
         chmod -R 777 ./IBM_Cloud_CLI/
     - name: Login IBM Cloud
       env:
@@ -41,7 +42,6 @@ jobs:
         UUID: ${{ secrets.UUID }}
         WS_PATH: ${{ secrets.WS_PATH }}
       run: |
-        chmod 777 ./re_install.sh
-        ./re_install.sh ${IBM_APP_NAME} ${UUID} ${WS_PATH}
+        sudo bash re_install.sh $IBM_APP_NAME $UUID $WS_PATH
         
 
