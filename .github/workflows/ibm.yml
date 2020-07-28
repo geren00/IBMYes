@@ -41,7 +41,6 @@ jobs:
         UUID: ${{ secrets.UUID }}
         WS_PATH: ${{ secrets.WS_PATH }}
       run: |
-        ./IBM_Cloud_CLI/ibmcloud cf restart "$IBM_APP_NAME"
         ./re_install.sh "$IBM_APP_NAME" "$UUID" "$WS_PATH"
         
 
