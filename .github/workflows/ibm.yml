@@ -42,6 +42,7 @@ jobs:
         WS_PATH: ${{ secrets.WS_PATH }}
       run: |
         ls -a
+        git submodule update --init --recursive
         cat >  ./v2ray-cloudfoundry/manifest.yml  << EOF
         applications:
         - path: .
