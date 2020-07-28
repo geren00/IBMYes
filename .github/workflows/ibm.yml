@@ -41,21 +41,21 @@ jobs:
         UUID: ${{ secrets.UUID }}
         WS_PATH: ${{ secrets.WS_PATH }}
       run: |
-        ls -a
+        echo "开始下载v2ray-cloudfoundry文件"
         git submodule update --init --recursive
         cd ./v2ray-cloudfoundry/v2ray
         pwd
         chmod 0755 ./*
         cd ..
         pwd
-        cat >  ./v2ray-cloudfoundry/manifest.yml  << EOF
+        cat >  ./manifest.yml  << EOF
         applications:
         - path: .
         name: ${IBM_APP_NAME}
         random-route: true
         memory: 256M
         EOF
-        cat >  ./v2ray-cloudfoundry/v2ray/config.json  << EOF
+        cat >  ./v2ray/config.json  << EOF
         {
             "inbounds": [
                 {
