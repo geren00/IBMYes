@@ -3,6 +3,7 @@ SH_PATH=$(cd "$(dirname "$0")";pwd)
 cd ${SH_PATH}
 
 create_mainfest_file(){
+    IBM_APP_NAME=$1
     IBM_MEM_SIZE=256
     UUID=$2
     WSPATH=$3
